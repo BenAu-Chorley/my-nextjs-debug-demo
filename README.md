@@ -1,5 +1,39 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Creating this project from scratch
+
+There are more than one way to create a Next.js project. This project used the following commands:
+
+1. `npx ceate-next-app@latest my-nextjs-debug-demo --typescript --eslint --tailwind --src-dir --app --turbopack --react-compiler --import-alias "@/*"`
+2. `cd my-nextjs-debug-demo/`
+3. `code .`
+
+Inside VS code, do the followings:
+
+1. create `src/app/api` and `.vscode` folders
+2. create `src/app/posts/page.tsx` file (refer to the file content in this repo)
+3. create `src/app/counter/page.tsx` file (refer to the file content in this repo)
+4. replace content in `src/app/page.tsx` with the content of the page in this repo
+5. create `.vscode/launch.json` file (refer to the file content in this repo)
+6. uninstall extension `Microsoft Edge Tools for VS Code` if it's installed
+7. open `Run and Debug` panel (Ctrl + Shift + D)
+8. select `Next.js: debug full stack` from the dropdown and press the green play button or press F5
+9. a chrome browser will be opened but you might need to type in your URL manually
+
+### Server side debugging
+1. set a breakpoint to line 11 in `src/app/posts/page.tsx`. In other words, break at the line:
+   1. `const posts: Post[] = await res.json();` 
+2. In Chrome, visit `http://localhost:3000/posts` and your breakpoint should hit
+
+### Client side debugging
+1. set a breakpoint to line 10 `setCounter(count + 1);` in `src/app/counter/page.tsx`
+   1. Note that setting this line is VS code is easier than searching for the location in your browser to set it there
+   2. If setting the breakpoint in Chrome after it is opened by VS code debugger, you can go to the `source` tab in Chrome and press `Ctrl + P` to open the file searcher
+   3. Type `counter` and select `page.tsx` and set the breakpoint there
+   4. Visit `http://localhost:3000/counter` and click the "Increment" button
+   5. When your breakpoint is hit in Chrome, debug from there (which will be easier than debugging from VS code)
+   6. Next.js automatically generates source maps in development mode, which map minified code back to your original TypeScript/JSX. This is why you can see your actual source code in DevTools
+
 ## Getting Started
 
 First, run the development server:
