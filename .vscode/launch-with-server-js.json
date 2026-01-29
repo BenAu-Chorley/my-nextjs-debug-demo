@@ -1,0 +1,51 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Server: Custom server.js (Next + API)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/server.js",
+      "runtimeArgs": ["--inspect"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development",
+      },
+      "cwd": "${workspaceFolder}",
+      "serverReadyAction": {
+        "pattern": "- Local:.+(https?://.+)",
+        "uriFormat": "http://localhost:3000/internal",
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Client: Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000/internal",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
+    },
+    {
+      "name": "Client: Edge",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:3000/internal",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Edge-based Full stack debugging",
+      "configurations": ["Server: Custom server.js (Next + API)", "Client: Edge"],
+      "stopAll": true
+    },
+    {
+      "name": "Chrome-based Full stack debugging",
+      "configurations": ["Server: Custom server.js (Next + API)", "Client: Chrome"],
+      "stopAll": true
+    }
+  ]
+}
